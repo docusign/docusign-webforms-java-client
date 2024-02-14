@@ -96,7 +96,7 @@ public class ApiClient {
     String javaVersion = System.getProperty("java.version");
 
     // Set default User-Agent.
-    setUserAgent("Swagger-Codegen/1.1.0/1.0.2-RC12/Java/" + javaVersion);
+    setUserAgent("Swagger-Codegen/1.1.0/1.0.0/Java/" + javaVersion);
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
