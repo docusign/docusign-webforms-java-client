@@ -5,7 +5,7 @@
     <artifactId>docusign-webforms-java</artifactId>
     <packaging>jar</packaging>
     <name>docusign-webforms-java</name>
-    <version>1.0.2-RC12</version>
+    <version>1.0.0</version>
     <url>https://developers.docusign.com</url>
     <description>The DocuSign NuGet package makes integrating DocuSign into your apps and websites a super fast and painless process. The library is open sourced on GitHub, look for the docusign-webforms-csharp-client repository.</description>
 
