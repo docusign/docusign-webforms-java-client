@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.OffsetDateTime;
+import java.io.Serializable;
 
 /**
  * Information about a DocuSign template that will be used to seed a web form..
@@ -14,7 +15,9 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Information about a DocuSign template that will be used to seed a web form.")
 
-public class TemplateProperties {
+public class TemplateProperties implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("originalTemplateId")
   private String originalTemplateId = null;
 

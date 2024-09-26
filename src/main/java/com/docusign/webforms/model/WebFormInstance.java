@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * An object that contains the Web Form Instance required to render it  and its metadata such as created by, created time.
@@ -17,7 +18,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "An object that contains the Web Form Instance required to render it  and its metadata such as created by, created time")
 
-public class WebFormInstance {
+public class WebFormInstance implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("formUrl")
   private String formUrl = null;
 

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * Container for the components map used during configuration and data collection.
@@ -14,7 +15,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Container for the components map used during configuration and data collection")
 
-public class WebFormContent {
+public class WebFormContent implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("components")
   private java.util.Map<String, java.util.Map<String, Object>> components = null;
 

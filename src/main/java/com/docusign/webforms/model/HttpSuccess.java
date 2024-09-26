@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * A simple response indicating success when no extra data is needed.
@@ -13,7 +14,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "A simple response indicating success when no extra data is needed")
 
-public class HttpSuccess {
+public class HttpSuccess implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("status")
   private String status = null;
 

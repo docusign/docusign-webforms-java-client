@@ -130,9 +130,9 @@ public class FormManagementApi {
     }
     
     // create path and map variables
-    String localVarPath = "/accounts/{account_id}/forms/{form_id}"
-      .replaceAll("\\{" + "account_id" + "\\}", apiClient.escapeString(accountId.toString()))
-      .replaceAll("\\{" + "form_id" + "\\}", apiClient.escapeString(formId.toString()));
+    String localVarPath = "/v1.1/accounts/{accountId}/forms/{formId}"
+      .replaceAll("\\{" + "accountId" + "\\}", apiClient.escapeString(accountId.toString()))
+      .replaceAll("\\{" + "formId" + "\\}", apiClient.escapeString(formId.toString()));
 
     // query params
     java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();
@@ -335,8 +335,8 @@ public class FormManagementApi {
     }
     
     // create path and map variables
-    String localVarPath = "/accounts/{account_id}/forms"
-      .replaceAll("\\{" + "account_id" + "\\}", apiClient.escapeString(accountId.toString()));
+    String localVarPath = "/v1.1/accounts/{accountId}/forms"
+      .replaceAll("\\{" + "accountId" + "\\}", apiClient.escapeString(accountId.toString()));
 
     // query params
     java.util.List<Pair> localVarQueryParams = new java.util.ArrayList<Pair>();

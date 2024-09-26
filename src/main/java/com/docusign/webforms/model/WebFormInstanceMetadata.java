@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * Web Form Instance metadata containing information like created by, created time, etc..
@@ -14,7 +15,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Web Form Instance metadata containing information like created by, created time, etc.")
 
-public class WebFormInstanceMetadata {
+public class WebFormInstanceMetadata implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("expirationDateTime")
   private String expirationDateTime = null;
 

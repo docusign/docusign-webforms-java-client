@@ -9,27 +9,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Type of components used in the web form
+ * The field indicates webform type.
  */
-public enum WebFormComponentType {
+public enum WebFormType {
   
-  CHECKBOXGROUP("CheckboxGroup"),
+  STANDALONE("standalone"),
   
-  DATE("Date"),
-  
-  EMAIL("Email"),
-  
-  NUMBER("Number"),
-  
-  RADIOBUTTONGROUP("RadioButtonGroup"),
-  
-  SELECT("Select"),
-  
-  TEXTBOX("TextBox");
+  HASESIGNTEMPLATE("hasEsignTemplate");
 
   private String value;
 
-  WebFormComponentType(String value) {
+  WebFormType(String value) {
     this.value = value;
   }
 
@@ -44,8 +34,8 @@ public enum WebFormComponentType {
   }
 
   @JsonCreator
-  public static WebFormComponentType fromValue(String value) {
-    for (WebFormComponentType b : WebFormComponentType.values()) {
+  public static WebFormType fromValue(String value) {
+    for (WebFormType b : WebFormType.values()) {
       if (b.value.equals(value)) {
         return b;
       }

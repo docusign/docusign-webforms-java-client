@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * An object that summarizes an instance of a form that can be used to display a listing.
@@ -16,7 +17,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "An object that summarizes an instance of a form that can be used to display a listing")
 
-public class WebFormSummary {
+public class WebFormSummary implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("id")
   private String id = null;
 
@@ -28,6 +31,9 @@ public class WebFormSummary {
 
   @JsonProperty("isEnabled")
   private Boolean isEnabled = null;
+
+  @JsonProperty("isUploaded")
+  private Boolean isUploaded = null;
 
   @JsonProperty("hasDraftChanges")
   private Boolean hasDraftChanges = null;
@@ -147,6 +153,33 @@ public class WebFormSummary {
    **/
   public void setIsEnabled(Boolean isEnabled) {
     this.isEnabled = isEnabled;
+  }
+
+
+  /**
+   * isUploaded.
+   *
+   * @return WebFormSummary
+   **/
+  public WebFormSummary isUploaded(Boolean isUploaded) {
+    this.isUploaded = isUploaded;
+    return this;
+  }
+
+  /**
+   * Has the form created through upload.
+   * @return isUploaded
+   **/
+  @Schema(example = "true", description = "Has the form created through upload")
+  public Boolean isIsUploaded() {
+    return isUploaded;
+  }
+
+  /**
+   * setIsUploaded.
+   **/
+  public void setIsUploaded(Boolean isUploaded) {
+    this.isUploaded = isUploaded;
   }
 
 
@@ -276,6 +309,7 @@ public class WebFormSummary {
         Objects.equals(this.accountId, webFormSummary.accountId) &&
         Objects.equals(this.isPublished, webFormSummary.isPublished) &&
         Objects.equals(this.isEnabled, webFormSummary.isEnabled) &&
+        Objects.equals(this.isUploaded, webFormSummary.isUploaded) &&
         Objects.equals(this.hasDraftChanges, webFormSummary.hasDraftChanges) &&
         Objects.equals(this.formState, webFormSummary.formState) &&
         Objects.equals(this.formProperties, webFormSummary.formProperties) &&
@@ -287,7 +321,7 @@ public class WebFormSummary {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, isPublished, isEnabled, hasDraftChanges, formState, formProperties, formMetadata);
+    return Objects.hash(id, accountId, isPublished, isEnabled, isUploaded, hasDraftChanges, formState, formProperties, formMetadata);
   }
 
 
@@ -303,6 +337,7 @@ public class WebFormSummary {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    isPublished: ").append(toIndentedString(isPublished)).append("\n");
     sb.append("    isEnabled: ").append(toIndentedString(isEnabled)).append("\n");
+    sb.append("    isUploaded: ").append(toIndentedString(isUploaded)).append("\n");
     sb.append("    hasDraftChanges: ").append(toIndentedString(hasDraftChanges)).append("\n");
     sb.append("    formState: ").append(toIndentedString(formState)).append("\n");
     sb.append("    formProperties: ").append(toIndentedString(formProperties)).append("\n");

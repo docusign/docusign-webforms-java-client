@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * Information about a DocuSign system user. The user exists within the account associated with the form..
@@ -13,7 +14,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Information about a DocuSign system user. The user exists within the account associated with the form.")
 
-public class WebFormUserInfo {
+public class WebFormUserInfo implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("userId")
   private String userId = null;
 

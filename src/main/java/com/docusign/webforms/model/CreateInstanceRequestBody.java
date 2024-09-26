@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * Request body containing properties that will be used to create instance..
@@ -15,7 +16,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Request body containing properties that will be used to create instance.")
 
-public class CreateInstanceRequestBody {
+public class CreateInstanceRequestBody implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("formValues")
   private WebFormValues formValues = null;
 
