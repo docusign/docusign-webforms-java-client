@@ -3,6 +3,7 @@ package com.docusign.webforms.model;
 import java.util.Objects;
 import java.util.Arrays;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * Key-value pairs (where key is the component name and value is the form value) used to create a form instance. For key of type TextBox, Email, Date, Select and RadioButtonGroup the value is of string type. For key of type Number, the value is of number type. For key of type of CheckboxGroup, the value is of type array of string..
@@ -10,7 +11,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Key-value pairs (where key is the component name and value is the form value) used to create a form instance. For key of type TextBox, Email, Date, Select and RadioButtonGroup the value is of string type. For key of type Number, the value is of number type. For key of type of CheckboxGroup, the value is of type array of string.")
 
-public class WebFormValues extends java.util.HashMap<String, Object> {
+public class WebFormValues extends java.util.HashMap<String, Object> implements Serializable {
+  private static final long serialVersionUID = 1L;
+
 
   /**
    * Compares objects.

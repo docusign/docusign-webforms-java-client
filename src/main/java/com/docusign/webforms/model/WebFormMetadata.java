@@ -4,12 +4,14 @@ import java.util.Objects;
 import java.util.Arrays;
 import com.docusign.webforms.model.WebFormComponentType;
 import com.docusign.webforms.model.WebFormSource;
+import com.docusign.webforms.model.WebFormType;
 import com.docusign.webforms.model.WebFormUserInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.OffsetDateTime;
+import java.io.Serializable;
 
 /**
  * Form metadata.
@@ -17,9 +19,17 @@ import java.time.OffsetDateTime;
  */
 @Schema(description = "Form metadata")
 
-public class WebFormMetadata {
+public class WebFormMetadata implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("source")
   private WebFormSource source = null;
+
+  @JsonProperty("type")
+  private WebFormType type = null;
+
+  @JsonProperty("sourceFormId")
+  private String sourceFormId = null;
 
   @JsonProperty("owner")
   private WebFormUserInfo owner = null;
@@ -90,10 +100,10 @@ public class WebFormMetadata {
   }
 
   /**
-   * The source from which the webform is created. Accepted values are [upload, templates, blank].
+   * The source from which the webform is created. Accepted values are [templates, blank, form].
    * @return source
    **/
-  @Schema(description = "The source from which the webform is created. Accepted values are [upload, templates, blank]")
+  @Schema(description = "The source from which the webform is created. Accepted values are [templates, blank, form]")
   public WebFormSource getSource() {
     return source;
   }
@@ -103,6 +113,60 @@ public class WebFormMetadata {
    **/
   public void setSource(WebFormSource source) {
     this.source = source;
+  }
+
+
+  /**
+   * type.
+   *
+   * @return WebFormMetadata
+   **/
+  public WebFormMetadata type(WebFormType type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Represents webform type. Possible values are [standalone, hasEsignTemplate].
+   * @return type
+   **/
+  @Schema(description = "Represents webform type. Possible values are [standalone, hasEsignTemplate]")
+  public WebFormType getType() {
+    return type;
+  }
+
+  /**
+   * setType.
+   **/
+  public void setType(WebFormType type) {
+    this.type = type;
+  }
+
+
+  /**
+   * sourceFormId.
+   *
+   * @return WebFormMetadata
+   **/
+  public WebFormMetadata sourceFormId(String sourceFormId) {
+    this.sourceFormId = sourceFormId;
+    return this;
+  }
+
+  /**
+   * The source form id from which the webform is created..
+   * @return sourceFormId
+   **/
+  @Schema(description = "The source form id from which the webform is created.")
+  public String getSourceFormId() {
+    return sourceFormId;
+  }
+
+  /**
+   * setSourceFormId.
+   **/
+  public void setSourceFormId(String sourceFormId) {
+    this.sourceFormId = sourceFormId;
   }
 
 
@@ -647,6 +711,8 @@ public class WebFormMetadata {
     }
     WebFormMetadata webFormMetadata = (WebFormMetadata) o;
     return Objects.equals(this.source, webFormMetadata.source) &&
+        Objects.equals(this.type, webFormMetadata.type) &&
+        Objects.equals(this.sourceFormId, webFormMetadata.sourceFormId) &&
         Objects.equals(this.owner, webFormMetadata.owner) &&
         Objects.equals(this.sender, webFormMetadata.sender) &&
         Objects.equals(this.lastModifiedBy, webFormMetadata.lastModifiedBy) &&
@@ -673,7 +739,7 @@ public class WebFormMetadata {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(source, owner, sender, lastModifiedBy, formContentModifiedBy, formPropertiesModifiedBy, lastPublishedBy, lastEnabledBy, lastDisabledBy, archivedDateTime, createdDateTime, lastModifiedDateTime, formContentModifiedDateTime, formPropertiesModifiedDateTime, lastPublishedDateTime, lastEnabledDateTime, lastDisabledDateTime, lastSenderConsentDateTime, publishedSlug, publishedComponentNames);
+    return Objects.hash(source, type, sourceFormId, owner, sender, lastModifiedBy, formContentModifiedBy, formPropertiesModifiedBy, lastPublishedBy, lastEnabledBy, lastDisabledBy, archivedDateTime, createdDateTime, lastModifiedDateTime, formContentModifiedDateTime, formPropertiesModifiedDateTime, lastPublishedDateTime, lastEnabledDateTime, lastDisabledDateTime, lastSenderConsentDateTime, publishedSlug, publishedComponentNames);
   }
 
 
@@ -686,6 +752,8 @@ public class WebFormMetadata {
     sb.append("class WebFormMetadata {\n");
     
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    sourceFormId: ").append(toIndentedString(sourceFormId)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
     sb.append("    lastModifiedBy: ").append(toIndentedString(lastModifiedBy)).append("\n");

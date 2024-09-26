@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
 
 /**
  * An object that fully describes an instance of a form.
@@ -18,7 +19,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "An object that fully describes an instance of a form")
 
-public class WebForm extends WebFormSummary {
+public class WebForm extends WebFormSummary implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @JsonProperty("versionId")
   private Integer versionId = null;
 
