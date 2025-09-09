@@ -25,7 +25,9 @@ public enum WebFormComponentType {
   
   SELECT("Select"),
   
-  TEXTBOX("TextBox");
+  TEXTBOX("TextBox"),
+  
+  FILEINPUT("FileInput");
 
   private String value;
 
