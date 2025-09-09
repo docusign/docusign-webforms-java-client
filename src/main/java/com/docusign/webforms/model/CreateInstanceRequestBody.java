@@ -3,7 +3,8 @@ package com.docusign.webforms.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.docusign.webforms.model.AuthenticationMethod;
-import com.docusign.webforms.model.WebFormValues;
+import com.docusign.webforms.model.CreateInstanceRequestBodyRecipients;
+import com.docusign.webforms.model.SendOption;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -20,7 +21,7 @@ public class CreateInstanceRequestBody implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("formValues")
-  private WebFormValues formValues = null;
+  private java.util.Map<String, Object> formValues = null;
 
   @JsonProperty("clientUserId")
   private String clientUserId = null;
@@ -43,6 +44,15 @@ public class CreateInstanceRequestBody implements Serializable {
   @JsonProperty("expirationOffset")
   private Integer expirationOffset = null;
 
+  @JsonProperty("sendOption")
+  private SendOption sendOption = null;
+
+  @JsonProperty("brandId")
+  private String brandId = null;
+
+  @JsonProperty("recipients")
+  private java.util.List<CreateInstanceRequestBodyRecipients> recipients = null;
+
   @JsonProperty("tags")
   private java.util.List<String> tags = null;
 
@@ -52,24 +62,37 @@ public class CreateInstanceRequestBody implements Serializable {
    *
    * @return CreateInstanceRequestBody
    **/
-  public CreateInstanceRequestBody formValues(WebFormValues formValues) {
+  public CreateInstanceRequestBody formValues(java.util.Map<String, Object> formValues) {
     this.formValues = formValues;
     return this;
   }
 
   /**
-   * Get formValues.
+   * putFormValuesItem.
+   *
+   * @return CreateInstanceRequestBody
+   **/
+  public CreateInstanceRequestBody putFormValuesItem(String key, Object formValuesItem) {
+    if (this.formValues == null) {
+      this.formValues = new java.util.HashMap<>();
+    }
+    this.formValues.put(key, formValuesItem);
+    return this;
+  }
+
+  /**
+   * Key-value pairs (where key is the component name and value is the form value) used to create a form instance. For key of type TextBox, Email, Date, Select and RadioButtonGroup the value is of string type. For key of type Number, the value is of number type. For key of type of CheckboxGroup, the value is of type array of string..
    * @return formValues
    **/
-  @Schema(description = "")
-  public WebFormValues getFormValues() {
+  @Schema(example = "{\"Textbox_Name\":\"First Last\",\"Email_primary\":\"example@example.com\",\"Date_birth\":\"2020-01-01\",\"Number_age\":52,\"Select_state\":\"California\",\"Radio_Gender\":\"Female\",\"Checkbox_hobbies\":[\"singing\",\"dancing\"],\"ID_card_attachment\":{\"documentName\":\"id_card.pdf\"}}", description = "Key-value pairs (where key is the component name and value is the form value) used to create a form instance. For key of type TextBox, Email, Date, Select and RadioButtonGroup the value is of string type. For key of type Number, the value is of number type. For key of type of CheckboxGroup, the value is of type array of string.")
+  public java.util.Map<String, Object> getFormValues() {
     return formValues;
   }
 
   /**
    * setFormValues.
    **/
-  public void setFormValues(WebFormValues formValues) {
+  public void setFormValues(java.util.Map<String, Object> formValues) {
     this.formValues = formValues;
   }
 
@@ -88,7 +111,7 @@ public class CreateInstanceRequestBody implements Serializable {
    * Get clientUserId.
    * @return clientUserId
    **/
-  @Schema(required = true, description = "")
+  @Schema(description = "")
   public String getClientUserId() {
     return clientUserId;
   }
@@ -264,6 +287,100 @@ public class CreateInstanceRequestBody implements Serializable {
 
 
   /**
+   * sendOption.
+   *
+   * @return CreateInstanceRequestBody
+   **/
+  public CreateInstanceRequestBody sendOption(SendOption sendOption) {
+    this.sendOption = sendOption;
+    return this;
+  }
+
+  /**
+   * Get sendOption.
+   * @return sendOption
+   **/
+  @Schema(description = "")
+  public SendOption getSendOption() {
+    return sendOption;
+  }
+
+  /**
+   * setSendOption.
+   **/
+  public void setSendOption(SendOption sendOption) {
+    this.sendOption = sendOption;
+  }
+
+
+  /**
+   * brandId.
+   *
+   * @return CreateInstanceRequestBody
+   **/
+  public CreateInstanceRequestBody brandId(String brandId) {
+    this.brandId = brandId;
+    return this;
+  }
+
+  /**
+   * Get brandId.
+   * @return brandId
+   **/
+  @Schema(description = "")
+  public String getBrandId() {
+    return brandId;
+  }
+
+  /**
+   * setBrandId.
+   **/
+  public void setBrandId(String brandId) {
+    this.brandId = brandId;
+  }
+
+
+  /**
+   * recipients.
+   *
+   * @return CreateInstanceRequestBody
+   **/
+  public CreateInstanceRequestBody recipients(java.util.List<CreateInstanceRequestBodyRecipients> recipients) {
+    this.recipients = recipients;
+    return this;
+  }
+  
+  /**
+   * addRecipientsItem.
+   *
+   * @return CreateInstanceRequestBody
+   **/
+  public CreateInstanceRequestBody addRecipientsItem(CreateInstanceRequestBodyRecipients recipientsItem) {
+    if (this.recipients == null) {
+      this.recipients = new java.util.ArrayList<>();
+    }
+    this.recipients.add(recipientsItem);
+    return this;
+  }
+
+  /**
+   * The recipients who will receive the form in email.
+   * @return recipients
+   **/
+  @Schema(description = "The recipients who will receive the form in email")
+  public java.util.List<CreateInstanceRequestBodyRecipients> getRecipients() {
+    return recipients;
+  }
+
+  /**
+   * setRecipients.
+   **/
+  public void setRecipients(java.util.List<CreateInstanceRequestBodyRecipients> recipients) {
+    this.recipients = recipients;
+  }
+
+
+  /**
    * tags.
    *
    * @return CreateInstanceRequestBody
@@ -325,6 +442,9 @@ public class CreateInstanceRequestBody implements Serializable {
         Objects.equals(this.securityDomain, createInstanceRequestBody.securityDomain) &&
         Objects.equals(this.returnUrl, createInstanceRequestBody.returnUrl) &&
         Objects.equals(this.expirationOffset, createInstanceRequestBody.expirationOffset) &&
+        Objects.equals(this.sendOption, createInstanceRequestBody.sendOption) &&
+        Objects.equals(this.brandId, createInstanceRequestBody.brandId) &&
+        Objects.equals(this.recipients, createInstanceRequestBody.recipients) &&
         Objects.equals(this.tags, createInstanceRequestBody.tags);
   }
 
@@ -333,7 +453,7 @@ public class CreateInstanceRequestBody implements Serializable {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(formValues, clientUserId, authenticationInstant, authenticationMethod, assertionId, securityDomain, returnUrl, expirationOffset, tags);
+    return Objects.hash(formValues, clientUserId, authenticationInstant, authenticationMethod, assertionId, securityDomain, returnUrl, expirationOffset, sendOption, brandId, recipients, tags);
   }
 
 
@@ -353,6 +473,9 @@ public class CreateInstanceRequestBody implements Serializable {
     sb.append("    securityDomain: ").append(toIndentedString(securityDomain)).append("\n");
     sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("    expirationOffset: ").append(toIndentedString(expirationOffset)).append("\n");
+    sb.append("    sendOption: ").append(toIndentedString(sendOption)).append("\n");
+    sb.append("    brandId: ").append(toIndentedString(brandId)).append("\n");
+    sb.append("    recipients: ").append(toIndentedString(recipients)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();

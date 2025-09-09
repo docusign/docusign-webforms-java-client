@@ -23,6 +23,9 @@ public class WebFormProperties implements Serializable {
   @JsonProperty("isPrivateAccess")
   private Boolean isPrivateAccess = null;
 
+  @JsonProperty("allowSending")
+  private Boolean allowSending = null;
+
 
   /**
    * name.
@@ -79,6 +82,33 @@ public class WebFormProperties implements Serializable {
 
 
   /**
+   * allowSending.
+   *
+   * @return WebFormProperties
+   **/
+  public WebFormProperties allowSending(Boolean allowSending) {
+    this.allowSending = allowSending;
+    return this;
+  }
+
+  /**
+   * When this property is true, form can be used for remote signing..
+   * @return allowSending
+   **/
+  @Schema(example = "true", description = "When this property is true, form can be used for remote signing.")
+  public Boolean isAllowSending() {
+    return allowSending;
+  }
+
+  /**
+   * setAllowSending.
+   **/
+  public void setAllowSending(Boolean allowSending) {
+    this.allowSending = allowSending;
+  }
+
+
+  /**
    * Compares objects.
    *
    * @return true or false depending on comparison result.
@@ -93,7 +123,8 @@ public class WebFormProperties implements Serializable {
     }
     WebFormProperties webFormProperties = (WebFormProperties) o;
     return Objects.equals(this.name, webFormProperties.name) &&
-        Objects.equals(this.isPrivateAccess, webFormProperties.isPrivateAccess);
+        Objects.equals(this.isPrivateAccess, webFormProperties.isPrivateAccess) &&
+        Objects.equals(this.allowSending, webFormProperties.allowSending);
   }
 
   /**
@@ -101,7 +132,7 @@ public class WebFormProperties implements Serializable {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(name, isPrivateAccess);
+    return Objects.hash(name, isPrivateAccess, allowSending);
   }
 
 
@@ -115,6 +146,7 @@ public class WebFormProperties implements Serializable {
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    isPrivateAccess: ").append(toIndentedString(isPrivateAccess)).append("\n");
+    sb.append("    allowSending: ").append(toIndentedString(allowSending)).append("\n");
     sb.append("}");
     return sb.toString();
   }

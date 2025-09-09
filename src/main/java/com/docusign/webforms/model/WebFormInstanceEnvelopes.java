@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.OffsetDateTime;
 import java.io.Serializable;
 
 /**
@@ -18,6 +19,9 @@ public class WebFormInstanceEnvelopes implements Serializable {
 
   @JsonProperty("id")
   private String id = null;
+
+  @JsonProperty("createdDateTime")
+  private String createdDateTime = null;
 
 
   /**
@@ -48,6 +52,33 @@ public class WebFormInstanceEnvelopes implements Serializable {
 
 
   /**
+   * createdDateTime.
+   *
+   * @return WebFormInstanceEnvelopes
+   **/
+  public WebFormInstanceEnvelopes createdDateTime(String createdDateTime) {
+    this.createdDateTime = createdDateTime;
+    return this;
+  }
+
+  /**
+   * The dateTime when an envelope is created..
+   * @return createdDateTime
+   **/
+  @Schema(description = "The dateTime when an envelope is created.")
+  public String getCreatedDateTime() {
+    return createdDateTime;
+  }
+
+  /**
+   * setCreatedDateTime.
+   **/
+  public void setCreatedDateTime(String createdDateTime) {
+    this.createdDateTime = createdDateTime;
+  }
+
+
+  /**
    * Compares objects.
    *
    * @return true or false depending on comparison result.
@@ -61,7 +92,8 @@ public class WebFormInstanceEnvelopes implements Serializable {
       return false;
     }
     WebFormInstanceEnvelopes webFormInstanceEnvelopes = (WebFormInstanceEnvelopes) o;
-    return Objects.equals(this.id, webFormInstanceEnvelopes.id);
+    return Objects.equals(this.id, webFormInstanceEnvelopes.id) &&
+        Objects.equals(this.createdDateTime, webFormInstanceEnvelopes.createdDateTime);
   }
 
   /**
@@ -69,7 +101,7 @@ public class WebFormInstanceEnvelopes implements Serializable {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(id, createdDateTime);
   }
 
 
@@ -82,6 +114,7 @@ public class WebFormInstanceEnvelopes implements Serializable {
     sb.append("class WebFormInstanceEnvelopes {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    createdDateTime: ").append(toIndentedString(createdDateTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -2,6 +2,7 @@ package com.docusign.webforms.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.docusign.webforms.model.InstanceSource;
 import com.docusign.webforms.model.WebFormUserInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -32,6 +33,12 @@ public class WebFormInstanceMetadata implements Serializable {
 
   @JsonProperty("lastModifiedBy")
   private WebFormUserInfo lastModifiedBy = null;
+
+  @JsonProperty("submittedDateTime")
+  private String submittedDateTime = null;
+
+  @JsonProperty("instanceSource")
+  private InstanceSource instanceSource = null;
 
 
   /**
@@ -170,6 +177,60 @@ public class WebFormInstanceMetadata implements Serializable {
 
 
   /**
+   * submittedDateTime.
+   *
+   * @return WebFormInstanceMetadata
+   **/
+  public WebFormInstanceMetadata submittedDateTime(String submittedDateTime) {
+    this.submittedDateTime = submittedDateTime;
+    return this;
+  }
+
+  /**
+   * Get submittedDateTime.
+   * @return submittedDateTime
+   **/
+  @Schema(description = "")
+  public String getSubmittedDateTime() {
+    return submittedDateTime;
+  }
+
+  /**
+   * setSubmittedDateTime.
+   **/
+  public void setSubmittedDateTime(String submittedDateTime) {
+    this.submittedDateTime = submittedDateTime;
+  }
+
+
+  /**
+   * instanceSource.
+   *
+   * @return WebFormInstanceMetadata
+   **/
+  public WebFormInstanceMetadata instanceSource(InstanceSource instanceSource) {
+    this.instanceSource = instanceSource;
+    return this;
+  }
+
+  /**
+   * Get instanceSource.
+   * @return instanceSource
+   **/
+  @Schema(description = "")
+  public InstanceSource getInstanceSource() {
+    return instanceSource;
+  }
+
+  /**
+   * setInstanceSource.
+   **/
+  public void setInstanceSource(InstanceSource instanceSource) {
+    this.instanceSource = instanceSource;
+  }
+
+
+  /**
    * Compares objects.
    *
    * @return true or false depending on comparison result.
@@ -187,7 +248,9 @@ public class WebFormInstanceMetadata implements Serializable {
         Objects.equals(this.createdDateTime, webFormInstanceMetadata.createdDateTime) &&
         Objects.equals(this.createdBy, webFormInstanceMetadata.createdBy) &&
         Objects.equals(this.lastModifiedDateTime, webFormInstanceMetadata.lastModifiedDateTime) &&
-        Objects.equals(this.lastModifiedBy, webFormInstanceMetadata.lastModifiedBy);
+        Objects.equals(this.lastModifiedBy, webFormInstanceMetadata.lastModifiedBy) &&
+        Objects.equals(this.submittedDateTime, webFormInstanceMetadata.submittedDateTime) &&
+        Objects.equals(this.instanceSource, webFormInstanceMetadata.instanceSource);
   }
 
   /**
@@ -195,7 +258,7 @@ public class WebFormInstanceMetadata implements Serializable {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(expirationDateTime, createdDateTime, createdBy, lastModifiedDateTime, lastModifiedBy);
+    return Objects.hash(expirationDateTime, createdDateTime, createdBy, lastModifiedDateTime, lastModifiedBy, submittedDateTime, instanceSource);
   }
 
 
@@ -212,6 +275,8 @@ public class WebFormInstanceMetadata implements Serializable {
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    lastModifiedDateTime: ").append(toIndentedString(lastModifiedDateTime)).append("\n");
     sb.append("    lastModifiedBy: ").append(toIndentedString(lastModifiedBy)).append("\n");
+    sb.append("    submittedDateTime: ").append(toIndentedString(submittedDateTime)).append("\n");
+    sb.append("    instanceSource: ").append(toIndentedString(instanceSource)).append("\n");
     sb.append("}");
     return sb.toString();
   }

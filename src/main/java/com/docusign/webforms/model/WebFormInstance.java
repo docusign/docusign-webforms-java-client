@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.docusign.webforms.model.InstanceStatus;
 import com.docusign.webforms.model.WebFormInstanceEnvelopes;
 import com.docusign.webforms.model.WebFormInstanceMetadata;
-import com.docusign.webforms.model.WebFormValues;
+import com.docusign.webforms.model.WebFormInstanceRecipients;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -55,7 +55,13 @@ public class WebFormInstance implements Serializable {
   private WebFormInstanceMetadata instanceMetadata = null;
 
   @JsonProperty("formValues")
-  private WebFormValues formValues = null;
+  private java.util.Map<String, Object> formValues = null;
+
+  @JsonProperty("brandId")
+  private String brandId = null;
+
+  @JsonProperty("recipients")
+  private java.util.List<WebFormInstanceRecipients> recipients = null;
 
 
   /**
@@ -386,25 +392,105 @@ public class WebFormInstance implements Serializable {
    *
    * @return WebFormInstance
    **/
-  public WebFormInstance formValues(WebFormValues formValues) {
+  public WebFormInstance formValues(java.util.Map<String, Object> formValues) {
     this.formValues = formValues;
     return this;
   }
 
   /**
-   * Get formValues.
+   * putFormValuesItem.
+   *
+   * @return WebFormInstance
+   **/
+  public WebFormInstance putFormValuesItem(String key, Object formValuesItem) {
+    if (this.formValues == null) {
+      this.formValues = new java.util.HashMap<>();
+    }
+    this.formValues.put(key, formValuesItem);
+    return this;
+  }
+
+  /**
+   * Key-value pairs (where key is the component name and value is the form value) used to create a form instance. For key of type TextBox, Email, Date, Select and RadioButtonGroup the value is of string type. For key of type Number, the value is of number type. For key of type of CheckboxGroup, the value is of type array of string..
    * @return formValues
    **/
-  @Schema(description = "")
-  public WebFormValues getFormValues() {
+  @Schema(example = "{\"Textbox_Name\":\"First Last\",\"Email_primary\":\"example@example.com\",\"Date_birth\":\"2020-01-01\",\"Number_age\":52,\"Select_state\":\"California\",\"Radio_Gender\":\"Female\",\"Checkbox_hobbies\":[\"singing\",\"dancing\"],\"ID_card_attachment\":{\"documentName\":\"id_card.pdf\"}}", description = "Key-value pairs (where key is the component name and value is the form value) used to create a form instance. For key of type TextBox, Email, Date, Select and RadioButtonGroup the value is of string type. For key of type Number, the value is of number type. For key of type of CheckboxGroup, the value is of type array of string.")
+  public java.util.Map<String, Object> getFormValues() {
     return formValues;
   }
 
   /**
    * setFormValues.
    **/
-  public void setFormValues(WebFormValues formValues) {
+  public void setFormValues(java.util.Map<String, Object> formValues) {
     this.formValues = formValues;
+  }
+
+
+  /**
+   * brandId.
+   *
+   * @return WebFormInstance
+   **/
+  public WebFormInstance brandId(String brandId) {
+    this.brandId = brandId;
+    return this;
+  }
+
+  /**
+   * Get brandId.
+   * @return brandId
+   **/
+  @Schema(description = "")
+  public String getBrandId() {
+    return brandId;
+  }
+
+  /**
+   * setBrandId.
+   **/
+  public void setBrandId(String brandId) {
+    this.brandId = brandId;
+  }
+
+
+  /**
+   * recipients.
+   *
+   * @return WebFormInstance
+   **/
+  public WebFormInstance recipients(java.util.List<WebFormInstanceRecipients> recipients) {
+    this.recipients = recipients;
+    return this;
+  }
+  
+  /**
+   * addRecipientsItem.
+   *
+   * @return WebFormInstance
+   **/
+  public WebFormInstance addRecipientsItem(WebFormInstanceRecipients recipientsItem) {
+    if (this.recipients == null) {
+      this.recipients = new java.util.ArrayList<>();
+    }
+    this.recipients.add(recipientsItem);
+    return this;
+  }
+
+  /**
+   * The associated envelope that is created when the instance is submitted.
+   * @return recipients
+   **/
+  @Schema(description = "The associated envelope that is created when the instance is submitted")
+  public java.util.List<WebFormInstanceRecipients> getRecipients() {
+    return recipients;
+  }
+
+  /**
+   * setRecipients.
+   **/
+  public void setRecipients(java.util.List<WebFormInstanceRecipients> recipients) {
+    this.recipients = recipients;
   }
 
 
@@ -433,7 +519,9 @@ public class WebFormInstance implements Serializable {
         Objects.equals(this.status, webFormInstance.status) &&
         Objects.equals(this.envelopes, webFormInstance.envelopes) &&
         Objects.equals(this.instanceMetadata, webFormInstance.instanceMetadata) &&
-        Objects.equals(this.formValues, webFormInstance.formValues);
+        Objects.equals(this.formValues, webFormInstance.formValues) &&
+        Objects.equals(this.brandId, webFormInstance.brandId) &&
+        Objects.equals(this.recipients, webFormInstance.recipients);
   }
 
   /**
@@ -441,7 +529,7 @@ public class WebFormInstance implements Serializable {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(formUrl, instanceToken, tokenExpirationDateTime, id, formId, accountId, clientUserId, tags, status, envelopes, instanceMetadata, formValues);
+    return Objects.hash(formUrl, instanceToken, tokenExpirationDateTime, id, formId, accountId, clientUserId, tags, status, envelopes, instanceMetadata, formValues, brandId, recipients);
   }
 
 
@@ -465,6 +553,8 @@ public class WebFormInstance implements Serializable {
     sb.append("    envelopes: ").append(toIndentedString(envelopes)).append("\n");
     sb.append("    instanceMetadata: ").append(toIndentedString(instanceMetadata)).append("\n");
     sb.append("    formValues: ").append(toIndentedString(formValues)).append("\n");
+    sb.append("    brandId: ").append(toIndentedString(brandId)).append("\n");
+    sb.append("    recipients: ").append(toIndentedString(recipients)).append("\n");
     sb.append("}");
     return sb.toString();
   }
